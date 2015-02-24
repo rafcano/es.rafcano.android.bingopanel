@@ -6,9 +6,9 @@ package es.rafcano.android.bingopanel;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,9 +19,9 @@ import android.widget.TextView;
 /**
  * The start point of the application.
  * @author Rafael Cano Parra
- * @version 1.2
+ * @version 1.3
  */
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
 	/**
 	 * The table with the numbers of the bingo panel.
@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
 		if (activeNumbers != null) {
 			for (int i = 0; i < activeNumbers.length(); i++) {
 				if (String.valueOf(activeNumbers.charAt(i)).equals("1")) {
-					((TextView) gridViewNumbers.getAdapter().getItem(i)).setTextColor(Color.RED);
+					((TextView) gridViewNumbers.getAdapter().getItem(i)).setTextColor(getResources().getColor(R.color.dark_red));
 					Log.i("BingoPanel", "The number (" + ((TextView) gridViewNumbers.getAdapter().getItem(i)).getText() + ") is active.");
 				}
 			}
@@ -66,11 +66,11 @@ public class MainActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	    		// changes to red or black the color text to the selected number
 				TextView number = (TextView) parent.getAdapter().getItem(position);
-				if (number.getCurrentTextColor() == Color.RED) {
+				if (number.getCurrentTextColor() == getResources().getColor(R.color.dark_red)) {
 					number.setTextColor(Color.BLACK);
 					Log.i("BingoPanel", "The number " + number.getText() + " is inactive now.");
 				} else {
-					number.setTextColor(Color.RED);
+					number.setTextColor(getResources().getColor(R.color.dark_red));
 					Log.i("BingoPanel", "The number " + number.getText() + " is active now.");
 				}
 				
@@ -112,12 +112,14 @@ public class MainActivity extends Activity {
 		}
 		
 		// updates the text label in the interface with the last eight numbers
-		textViewLastNumbers.setText("");
 		if (lastNumbersList.size() > 0) {
+			textViewLastNumbers.setText("");
 			textViewLastNumbers.append(lastNumbersList.get(0));
-			for (int i = 1; i < lastNumbersList.size() && i < 8; i++) {
+			for (int i = 1; i < lastNumbersList.size() && i < 12; i++) {
 				textViewLastNumbers.append(", " + lastNumbersList.get(i));
 			}
+		} else {
+			textViewLastNumbers.setText(getResources().getString(R.string.no_numbers));
 		}
 		Log.i("BingoPanel", "The last active numbers were updated in the interface: " + textViewLastNumbers.getText().toString());
 	}
@@ -129,7 +131,7 @@ public class MainActivity extends Activity {
 	private String getActiveNumbersSequence() {
 		String activeNumbers = "";
 		for (int i = 0; i < gridViewNumbers.getAdapter().getCount(); i++) {
-			if (((TextView) gridViewNumbers.getAdapter().getItem(i)).getCurrentTextColor() == Color.RED) {
+			if (((TextView) gridViewNumbers.getAdapter().getItem(i)).getCurrentTextColor() == getResources().getColor(R.color.dark_red)) {
 				activeNumbers += "1";
 			} else {
 				activeNumbers += "0";
@@ -153,8 +155,8 @@ public class MainActivity extends Activity {
 		Log.i("BingoPanel", "All numbers were defined as inactive.");
 		
 		// clears the last active numbers, saves the changes and updates the interface 
-		textViewLastNumbers.setText("");
-		InternalStorage.setLastNumbers(getApplicationContext(), textViewLastNumbers.getText().toString());
+		textViewLastNumbers.setText(getResources().getString(R.string.no_numbers));
+		InternalStorage.setLastNumbers(getApplicationContext(), "");
 		Log.i("BingoPanel", "All last active numbers were deleted.");
 	}
 

@@ -4,6 +4,7 @@
     <string name="app_name">Panel de Bingo</string>
     <string name="title">PANEL DE BINGO</string>
     <string name="new_play">Nueva partida</string>
-    <string name="last">Últimos números:</string>
+    <string name="last">Últimos 12 números:</string>
+    <string name="no_numbers">(no hay números aún)</string>
 
 </resources>

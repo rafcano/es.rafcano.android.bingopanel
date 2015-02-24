@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,53 +13,36 @@
         android:id="@+id/gridViewNumbers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonNewPlay"
-        android:layout_below="@+id/textViewTitle"
-        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:numColumns="10" >
 
     </GridView>
 
     <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/title"
-        android:textSize="36sp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/buttonNewPlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onClickNewPlay"
-        android:text="@string/new_play" />
-
-    <TextView
         android:id="@+id/textViewLastNumbersLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonNewPlay"
-        android:layout_alignRight="@+id/gridViewNumbers"
-        android:layout_alignEnd="@+id/gridViewNumbers"
-        android:layout_toRightOf="@+id/buttonNewPlay"
-        android:layout_toEndOf="@+id/buttonNewPlay"
+        android:layout_weight="0.05"
+        android:textStyle="bold"
+        android:gravity="bottom"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:text="@string/last" />
 
     <TextView
         android:id="@+id/textViewLastNumbers"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/buttonNewPlay"
-        android:layout_alignRight="@+id/gridViewNumbers"
-        android:layout_alignEnd="@+id/gridViewNumbers"
-        android:layout_below="@+id/textViewLastNumbersLabel"
-        android:layout_toRightOf="@+id/buttonNewPlay"
-        android:layout_toEndOf="@+id/buttonNewPlay" />
+        android:layout_weight="0.12"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/no_numbers" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/buttonNewPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickNewPlay"
+        android:text="@string/new_play" />
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<resources>
+
+    <!--
+        Base application theme for API 21+. This theme completely replaces
+        AppBaseTheme from all res/values/styles.xml and
+        res/values-v11/styles.xml and res/values-v14/styles.xml
+        on API 21+ devices.
+    -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- API 21 theme customizations can go here. -->
+    </style>
+
+</resources>
